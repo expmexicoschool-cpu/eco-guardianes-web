@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>EcoGuardianes ECOTON 2026</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Trebuchet MS', sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#d9fff1,#f4fff0,#d6f5ff);
+    overflow-x:hidden;
+    color:#144;
+}
+
+/* SCROLL */
+::-webkit-scrollbar{
+    width:12px;
+}
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(#00c853,#00b0ff);
+    border-radius:20px;
+}
+::-webkit-scrollbar-track{
+    background:#e8fdf1;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#00c853,#00b0ff,#ffeb3b,#ff9800);
+    padding:25px;
+    text-align:center;
+    color:white;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+header h1{
+    font-size:3rem;
+    text-shadow:3px 3px 8px rgba(0,0,0,.3);
+    animation:float 3s infinite ease-in-out;
+}
+
+header h2{
+    margin-top:10px;
+    font-size:1.4rem;
+    letter-spacing:2px;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
+    100%{transform:translateY(0);}
+}
+
+.hero{
+    padding:30px;
+    text-align:center;
+}
+
+.hero h3{
+    font-size:2.3rem;
+    color:#00897b;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:900px;
+    margin:auto;
+    font-size:1.2rem;
+    line-height:1.8;
+}
+
+/* GIFS */
+.gif-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.gif-container img{
+    width:250px;
+    height:180px;
+    border-radius:20px;
+    object-fit:cover;
+    box-shadow:0 8px 15px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.gif-container img:hover{
+    transform:scale(1.05);
+}
+
+/* INFO CARDS */
+.section{
+    padding:40px 20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h4{
+    color:#009688;
+    margin-bottom:15px;
+    font-size:1.4rem;
+}
+
+.card ul{
+    padding-left:20px;
+    line-height:1.8;
+}
+
+/* SCORE PANEL */
+.score-panel{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin:30px 0;
+}
+
+.score-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    min-width:180px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.score-box h5{
+    font-size:1.3rem;
+    color:#00897b;
+}
+
+.score{
+    font-size:2rem;
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.lives{
+    color:red;
+    font-size:2rem;
+}
+
+.plants{
+    font-size:2rem;
+}
+
+/* QUIZ */
+.quiz-container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.question{
+    background:white;
+    margin-bottom:20px;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.question h3{
+    margin-bottom:15px;
+    color:#00796b;
+}
+
+.answers button{
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#00c853,#00b0ff);
+    color:white;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.answers button:hover{
+    transform:scale(1.02);
+}
+
+.correct{
+    background:#4caf50 !important;
+}
+
+.wrong{
+    background:#f44336 !important;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+table th{
+    background:#00b894;
+    color:white;
+    padding:15px;
+}
+
+table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f1fff8;
+}
+
+/* FOOTER */
+footer{
+    background:#00897b;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+}
+
+/* NAVIGATION FLOW */
+.flow{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.flow-card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.flow-card h4{
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+/* DRAG GAME */
+.drag-container{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.items{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.draggable{
+    padding:15px;
+    background:#00b0ff;
+    color:white;
+    border-radius:15px;
+    cursor:grab;
+}
+
+.dropzones{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.zone{
+    flex:1;
+    min-height:150px;
+    background:#f0fff5;
+    border:3px dashed #00c853;
+    border-radius:20px;
+    padding:20px;
+}
+
+.zone h3{
+    margin-bottom:10px;
+}
+
+@media(max-width:768px){
+    header h1{
+        font-size:2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Colegio Experimental México</h1>
+    <h2>Dios, Orden y Paz</h2>
+</header>
+
+<section class="hero">
+    <h3>🌎 EcoGuardianes del Agua 2026 💧</h3>
+    <p>
+        Una plataforma interactiva creada para estudiantes de 6to grado donde los niños
+        aprenden a proteger el agua, cuidar la flora y fauna, y reducir la contaminación
+        mediante juegos, misiones ecológicas, simuladores y desafíos educativos.
+    </p>
+
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif">
+        <img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif">
+        <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif">
+    </div>
+</section>
+
+<section class="section">
+    <div class="cards">
+
+        <div class="card">
+            <h4>🎯 Necesidad Educativa</h4>
+            <p>
+                Muchos niños conocen poco sobre el cuidado del agua y los recursos naturales.
+                Esta herramienta enseña cómo pequeñas acciones diarias ayudan al planeta.
+            </p>
+        </div>
+
+        <div class="card">
+            <h4>🎨 Características Visuales</h4>
+            <ul>
+                <li>Colores ecológicos vibrantes</li>
+                <li>Botones grandes y animados</li>
+                <li>GIFs ecológicos interactivos</li>
+                <li>Tabla visual de monitoreo ambiental</li>
+                <li>Sonidos y recompensas</li>
+                <li>Barras suaves y diseño amigable</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h4>🌱 Sustentabilidad</h4>
+            <p>
+                Los estudiantes pueden usarla semanalmente en casa o en la escuela para
+                registrar actividades ecológicas y participar en retos ambientales.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <h2 style="text-align:center;color:#00796b;font-size:2rem;">
+        ⭐ Sistema de Recompensas ECOTON
+    </h2>
+
+    <div class="score-panel">
+
+        <div class="score-box">
+            <h5>Puntos</h5>
+            <div class="score" id="score">0</div>
+        </div>
+
+        <div class="score-box">
+            <h5>Vidas</h5>
+            <div class="lives" id="lives">❤️❤️❤️</div>
+        </div>
+
+        <div class="score-box">
+            <h5>Plantas Ganadas</h5>
+            <div class="plants" id="plants">🪴 0</div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 style="text-align:center;margin-bottom:25px;color:#00897b;">
+        🧠 Quiz Ecológico Interactivo
+    </h2>
+
+    <div class="quiz-container" id="quizContainer"></div>
+
+</section>
+
+<section class="section">
+
+    <h2 style="text-align:center;margin-bottom:25px;color:#00897b;">
+        ♻️ Juego de Arrastrar y Soltar
+    </h2>
+
+    <div class="drag-container">
+
+        <p style="margin-bottom:20px;">
+            Arrastra cada acción al lugar correcto:
+        </p>
+
+        <div class="items">
+            <div class="draggable" draggable="true" data-type="good">Cerrar la llave</div>
+            <div class="draggable" draggable="true" data-type="bad">Botar basura al río</div>
+            <div class="draggable" draggable="true" data-type="good">Sembrar árboles</div>
+            <div class="draggable" draggable="true" data-type="bad">Desperdiciar agua</div>
+        </div>
+
+        <div class="dropzones">
+
+            <div class="zone" data-zone="good">
+                <h3>✅ Ayuda al planeta</h3>
+            </div>
+
+            <div class="zone" data-zone="bad">
+                <h3>❌ Daña al planeta</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 style="text-align:center;margin-bottom:25px;color:#00897b;">
+        📊 Tabla de Monitoreo del Agua
+    </h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Día</th>
+                <th>Nivel del Río</th>
+                <th>Consumo Escolar</th>
+                <th>Estado Ambiental</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Lunes</td>
+                <td>Alto</td>
+                <td>120L</td>
+                <td>😊 Excelente</td>
+            </tr>
+
+            <tr>
+                <td>Martes</td>
+                <td>Medio</td>
+                <td>160L</td>
+                <td>🙂 Bueno</td>
+            </tr>
+
+            <tr>
+                <td>Miércoles</td>
+                <td>Bajo</td>
+                <td>220L</td>
+                <td>⚠️ Ahorrar agua</td>
+            </tr>
+
+            <tr>
+                <td>Jueves</td>
+                <td>Medio</td>
+                <td>140L</td>
+                <td>😊 Excelente</td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<section class="section">
+
+    <h2 style="text-align:center;margin-bottom:25px;color:#00897b;">
+        📱 Flujo de Navegación
+    </h2>
+
+    <div class="flow">
+
+        <div class="flow-card">
+            <h4>🏠 Inicio</h4>
+            <p>Presentación del proyecto y retos ecológicos.</p>
+        </div>
+
+        <div class="flow-card">
+            <h4>🧠 Juegos</h4>
+            <p>Quiz, arrastrar y simuladores ambientales.</p>
+        </div>
+
+        <div class="flow-card">
+            <h4>📊 Monitoreo</h4>
+            <p>Tabla interactiva del uso del agua.</p>
+        </div>
+
+        <div class="flow-card">
+            <h4>🌱 Recompensas</h4>
+            <p>Plantas virtuales y puntos ecológicos.</p>
+        </div>
+
+        <div class="flow-card">
+            <h4>🏆 ECOTON 2026</h4>
+            <p>Resultados y misiones semanales.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    🌎 Proyecto Escolar ECOTON 2026 - Innovación Ecológica para el Futuro 🌱
+</footer>
+
+<script>
+
+/* ===============================
+   SISTEMA DE PUNTOS Y VIDAS
+================================= */
+
+let score = 0;
+let lives = 3;
+let plants = 0;
+
+const correctSound = new Audio("https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3");
+const wrongSound = new Audio("https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3");
+
+const questions = [
+
+{
+q:"¿Qué acción ayuda a ahorrar agua?",
+options:["Dejar la llave abierta","Cerrar la llave","Jugar con agua","Lavar carros diario"],
+answer:1
+},
+
+{
+q:"¿Botar basura al río contamina?",
+options:["Verdadero","Falso"],
+answer:0
+},
+
+{
+q:"¿Qué debemos hacer con los árboles?",
+options:["Cortarlos todos","Cuidarlos y sembrarlos","Quemarlos","Ignorarlos"],
+answer:1
+},
+
+{
+q:"¿El reciclaje ayuda al planeta?",
+options:["Sí","No"],
+answer:0
+},
+
+{
+q:"¿Qué animal necesita agua limpia?",
+options:["Peces","Robots","Autos","Computadoras"],
+answer:0
+},
+
+{
+q:"¿Debemos reutilizar botellas?",
+options:["Sí","No"],
+answer:0
+},
+
+{
+q:"¿Qué energía es más ecológica?",
+options:["Solar","Basura","Humo","Petróleo"],
+answer:0
+},
+
+{
+q:"¿Apagar luces ayuda al ambiente?",
+options:["Verdadero","Falso"],
+answer:0
+},
+
+{
+q:"¿Cuál acción daña más al río?",
+options:["Sembrar árboles","Tirar plástico","Reciclar","Ahorrar agua"],
+answer:1
+},
+
+{
+q:"¿Qué debemos hacer con el agua?",
+options:["Cuidarla","Desperdiciarla","Ensuciarla","Ignorarla"],
+answer:0
+}
+
+];
+
+const quizContainer = document.getElementById("quizContainer");
+
+questions.forEach((question,index)=>{
+
+    const div = document.createElement("div");
+    div.classList.add("question");
+
+    div.innerHTML = `
+        <h3>${index+1}. ${question.q}</h3>
+        <div class="answers">
+            ${question.options.map((opt,i)=>
+                `<button onclick="checkAnswer(this,${i},${question.answer})">${opt}</button>`
+            ).join("")}
+        </div>
+    `;
+
+    quizContainer.appendChild(div);
+
+});
+
+function checkAnswer(button,selected,correct){
+
+    const parent = button.parentElement;
+
+    if(parent.classList.contains("answered")) return;
+
+    parent.classList.add("answered");
+
+    if(selected===correct){
+
+        button.classList.add("correct");
+        correctSound.play();
+
+        score += 10;
+
+        if(score % 20 === 0){
+            plants++;
+            alert("🌱 ¡Ganaste una planta para sembrar en tu colegio!");
+        }
+
+    }else{
+
+        button.classList.add("wrong");
+        wrongSound.play();
+
+        lives--;
+
+        if(lives<=0){
+            alert("😢 ¡Te quedaste sin vidas! Sigue aprendiendo y vuelve a intentarlo.");
+            lives = 0;
+        }
+    }
+
+    updatePanel();
+}
+
+function updatePanel(){
+
+    document.getElementById("score").innerText = score;
+
+    document.getElementById("plants").innerHTML = `🪴 ${plants}`;
+
+    let hearts = "";
+
+    for(let i=0;i<lives;i++){
+        hearts += "❤️";
+    }
+
+    document.getElementById("lives").innerHTML = hearts || "💔";
+}
+
+/* ===============================
+   DRAG AND DROP
+================================= */
+
+const draggables = document.querySelectorAll(".draggable");
+const zones = document.querySelectorAll(".zone");
+
+draggables.forEach(item=>{
+
+    item.addEventListener("dragstart",()=>{
+        item.classList.add("dragging");
+    });
+
+    item.addEventListener("dragend",()=>{
+        item.classList.remove("dragging");
+    });
+
+});
+
+zones.forEach(zone=>{
+
+    zone.addEventListener("dragover",(e)=>{
+        e.preventDefault();
+    });
+
+    zone.addEventListener("drop",(e)=>{
+
+        const dragging = document.querySelector(".dragging");
+
+        zone.appendChild(dragging);
+
+        const type = dragging.dataset.type;
+        const zoneType = zone.dataset.zone;
+
+        if(type===zoneType){
+
+            correctSound.play();
+            score += 10;
+
+            if(score % 20 === 0){
+                plants++;
+                alert("🌱 ¡Ganaste una nueva planta!");
+            }
+
+            alert("😊 ¡Correcto! Acción ecológica identificada.");
+        }else{
+
+            wrongSound.play();
+            lives--;
+
+            alert("😢 Esa acción no pertenece aquí.");
+
+            if(lives<0) lives = 0;
+        }
+
+        updatePanel();
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
